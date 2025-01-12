@@ -16,6 +16,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    - name: Install Libraries
+      run: sudo apt install -y libopencv-dev libopencv-contrib-dev
+    - name: Run rustfmt
+      run: cargo fmt --all -- --check
+    - name: Run clippy
+      run: cargo clippy --all-targets
     - name: Build
       run: cargo build --verbose
     - name: Run tests
